@@ -13,7 +13,7 @@ function App() {
   };
 
   const handleDeleteTodo = (id) => {
-    setTools(todos.filter((todo) => todo.id !== id ));
+    setTodos(todos.filter((todo) => todo.id !== id ));
   };
 
   return (
