@@ -1,13 +1,36 @@
+import React, { useState } from 'react';
+import Todo from './Todo';
+import './styles.css';
 
-import React from "react";
-import './../styles/App.css';
+function App() {
+  const [todos, setTodos] = useState([]);
+  const [input, setInput] = useState('');
 
-const App = () => {
+  const handleAddTodo = () => {
+    if (input.trim() === '') return;
+    setTodos([...todos, { id: Date.now(), text: input }]);
+    setInput('');
+  };
+
+  const handleDeleteTodo = (id) => {
+    setTools(todos.filter((todo) => todo.id !== id ));
+  };
+
   return (
-    <div>
-        {/* Do not remove the main div */}
+    <div className="app">
+    <h1>To-Do List</h1>
+    <div className="input-container">
+    <input
+  type="text"
+  value={input}
+  onChange={(e) => setInput(e.target.value)}
+  placeholder="Enter a task"
+  />
+    <button onClick={handleAddTodo}>Add Todo</button>
     </div>
-  )
+  <Todo todos={todos} onDelete={handleDeleteTodo} />
+    </div>
+  );
 }
 
-export default App
+export default App;
